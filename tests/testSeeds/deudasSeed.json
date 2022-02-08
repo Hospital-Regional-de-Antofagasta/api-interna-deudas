@@ -1,0 +1,74 @@
+[
+  {
+    "_id": "000000000001",
+    "correlativo": 1,
+    "rutPaciente": "11111111-1",
+    "fecha": "2017-06-06",
+    "identificadorPrograma": "1706001668",
+    "valor": 630,
+    "deuda": 630,
+    "tipoPrograma": "OA",
+    "codigoEstablecimiento": "HRA",
+    "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán"
+  },
+  {
+    "_id": "000000000002",
+    "correlativo": 2,
+    "rutPaciente": "22222222-2",
+    "fecha": "2002-02-15",
+    "identificadorPrograma": "202002544",
+    "valor": 2762,
+    "deuda": 2762,
+    "tipoPrograma": "OA",
+    "codigoEstablecimiento": "HRA",
+    "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán"
+  },
+  {
+    "_id": "000000000003",
+    "correlativo": 3,
+    "rutPaciente": "11111111-1",
+    "fecha": "2018-12-27",
+    "identificadorPrograma": "1812270255",
+    "valor": 2993,
+    "deuda": 2993,
+    "tipoPrograma": "DAU",
+    "codigoEstablecimiento": "HRA",
+    "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán"
+  },
+  {
+    "_id": "000000000004",
+    "correlativo": 4,
+    "rutPaciente": "22222222-2",
+    "fecha": "1999-05-10",
+    "identificadorPrograma": "9905100354",
+    "valor": 7382,
+    "deuda": 7382,
+    "tipoPrograma": "DAU",
+    "codigoEstablecimiento": "HRA",
+    "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán"
+  },
+  {
+    "_id": "000000000005",
+    "correlativo": 5,
+    "rutPaciente": "11111111-1",
+    "fecha": "2015-11-20",
+    "identificadorPrograma": "541234",
+    "valor": 7613,
+    "deuda": 7613,
+    "tipoPrograma": "CH",
+    "codigoEstablecimiento": "HRA",
+    "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán"
+  },
+  {
+    "_id": "000000000006",
+    "correlativo": 1,
+    "rutPaciente": "22222222-2",
+    "fecha": "2000-02-24",
+    "identificadorPrograma": "65865",
+    "valor": 8999,
+    "deuda": 8999,
+    "tipoPrograma": "CH",
+    "codigoEstablecimiento": "HC",
+    "nombreEstablecimiento": "Hospital de Calama"
+  }
+]

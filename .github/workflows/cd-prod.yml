@@ -1,0 +1,33 @@
+  name: Despliegue continuo a produccion
+  on:
+    push:
+      branches:
+        - master
+  jobs:
+    setup-build:
+      name: Configurar, Construir
+      runs-on: ubuntu-latest
+      env:
+        PROJECT_ID: ${{ secrets.CGP_PROJECT }}
+        KEY: ${{ secrets.GCP_KEY }}
+        API_ZONE: ${{ secrets.GCP_ZONE_PROD }}
+        API_CLUSTER: ${{ secrets.GCP_CLUSTER_PROD }}
+        API_KEY: ${{ secrets.API_INTERNA_KEY_PROD }}
+        MONGO_IP: ${{ secrets.MONGO_IP_PROD }}
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+
+        - name: Build Test
+          env:
+            #Variables usadas solo para la ejecución de las pruebas
+            MONGO_URI: "mongodb://localhost:27017/hrapp_dev"
+            PORT: "3000"
+            HOST_NAME: "localhost"
+            HRADB_A_MONGODB_SECRET: "TEST"
+            NODE_ENV: "test"
+          run: |
+            chmod +x ./gradlew
+            ./gradlew helmInstallApiInternaDeudasToCloud
