@@ -15,10 +15,10 @@ const deudaGuardar = {
   correlativo: 9,
   rutPaciente: "11111111-1",
   fecha: "2000-04-25",
-  identificadorPrograma: "70118",
+  identificador: "70118",
   valor: 8768,
   deuda: 8768,
-  tipoPrograma: "CH",
+  tipo: "PAGARE",
   codigoEstablecimiento: "HRA",
   nombreEstablecimiento: "Hospital Regional Antofagasta Dr. Leonardo Guzmán",
 };
@@ -27,10 +27,10 @@ const deudaActualizar = {
   correlativo: 2,
   rutPaciente: "22222222-2",
   fecha: "2000-04-25",
-  identificadorPrograma: "9911100173",
+  identificador: "9911100173",
   valor: 8768,
   deuda: 8768,
-  tipoPrograma: "DAU",
+  tipo: "PAGARE",
   codigoEstablecimiento: "HRA",
   nombreEstablecimiento: "Hospital Regional Antofagasta Dr. Leonardo Guzmán",
 };
@@ -113,12 +113,10 @@ describe("Endpoints deudas salida", () => {
       expect(Date.parse(deudaDespues.fecha)).toBe(
         Date.parse(deudaGuardar.fecha)
       );
-      expect(deudaDespues.identificadorPrograma).toBe(
-        deudaGuardar.identificadorPrograma
-      );
+      expect(deudaDespues.identificador).toBe(deudaGuardar.identificador);
       expect(deudaDespues.valor).toBe(deudaGuardar.valor);
       expect(deudaDespues.deuda).toBe(deudaGuardar.deuda);
-      expect(deudaDespues.tipoPrograma).toBe(deudaGuardar.tipoPrograma);
+      expect(deudaDespues.tipo).toBe(deudaGuardar.tipo);
       expect(deudaDespues.codigoEstablecimiento).toBe(
         deudaGuardar.codigoEstablecimiento
       );
@@ -263,12 +261,10 @@ describe("Endpoints deudas salida", () => {
       expect(Date.parse(deudaDespues.fecha)).toBe(
         Date.parse(deudaActualizar.fecha)
       );
-      expect(deudaDespues.identificadorPrograma).toBe(
-        deudaActualizar.identificadorPrograma
-      );
+      expect(deudaDespues.identificador).toBe(deudaActualizar.identificador);
       expect(deudaDespues.valor).toBe(deudaActualizar.valor);
       expect(deudaDespues.deuda).toBe(deudaActualizar.deuda);
-      expect(deudaDespues.tipoPrograma).toBe(deudaActualizar.tipoPrograma);
+      expect(deudaDespues.tipo).toBe(deudaActualizar.tipo);
       expect(deudaDespues.codigoEstablecimiento).toBe(
         deudaActualizar.codigoEstablecimiento
       );
