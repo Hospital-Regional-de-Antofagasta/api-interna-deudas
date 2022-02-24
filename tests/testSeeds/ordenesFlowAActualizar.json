@@ -1,0 +1,62 @@
+[
+  {
+    "_id": "000000000003",
+    "token": "125",
+    "flowOrder": "125",
+    "estado": "VALIDADA",
+    "pagos": [
+      {
+        "idDeuda": "000000000002",
+        "abono": 1000
+      },
+      {
+        "idDeuda": "000000000004",
+        "abono": 3000
+      }
+    ],
+    "commerceOrder": "commerceOrder"
+  },
+  {
+    "_id": "000000000013",
+    "token": "125",
+    "flowOrder": "125",
+    "estado": "VALIDADA",
+    "pagos": [
+      {
+        "idDeuda": "000000000002",
+        "abono": 1000
+      },
+      {
+        "idDeuda": "000000000004",
+        "abono": 3000
+      }
+    ],
+    "commerceOrder": "commerceOrder"
+  },
+  {
+    "_id": "000000000006",
+    "token": "128",
+    "flowOrder": "128",
+    "estado": "EN_REGULARIZACION",
+    "pagos": [
+      {
+        "idDeuda": "000000000003",
+        "abono": 1000
+      }
+    ],
+    "commerceOrder": "commerceOrder"
+  },
+  {
+    "_id": "000000000007",
+    "token": "129",
+    "flowOrder": "129",
+    "estado": "ERROR_VALIDACION",
+    "pagos": [
+      {
+        "idDeuda": "000000000007",
+        "abono": 1000
+      }
+    ],
+    "commerceOrder": "commerceOrder"
+  }
+]

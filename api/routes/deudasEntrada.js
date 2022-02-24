@@ -7,4 +7,6 @@ const router = express.Router();
 
 router.get("/pagos", isAuthenticated, requiredParameters, deudasEntradaController.getOrdenesFlow);
 
+router.put("/pagos", isAuthenticated, deudasEntradaController.updateOrdenesFlow);
+
 module.exports = router;
