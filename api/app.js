@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 const deudasSalida = require("./routes/deudasSalida");
+const deudasEntrada = require("./routes/deudasEntrada");
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -21,6 +22,8 @@ app.get("/inter-mongo-deudas/health", (req, res) => {
 });
 
 app.use("/inter-mongo-deudas/salida", deudasSalida);
+
+app.use("/inter-mongo-deudas/entrada", deudasEntrada);
 
 if (require.main === module) {
   // true if file is executed

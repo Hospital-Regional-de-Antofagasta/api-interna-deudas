@@ -1,0 +1,114 @@
+[
+  {
+    "token": "123",
+    "flowOrder": "123",
+    "estado": "EN_PROCESO",
+    "pagos": [
+      {
+        "idDeuda": "000000000001",
+        "abono": 1000
+      }
+    ],
+    "commerceOrder": "commerceOrder"
+  },
+  {
+    "token": "124",
+    "flowOrder": "124",
+    "estado": "VALIDADA",
+    "pagos": [
+      {
+        "idDeuda": "000000000001",
+        "abono": 2000
+      }
+    ],
+    "commerceOrder": "commerceOrder"
+  },
+  {
+    "token": "125",
+    "flowOrder": "125",
+    "estado": "PAGADA",
+    "pagos": [
+      {
+        "idDeuda": "000000000002",
+        "abono": 1000
+      },
+      {
+        "idDeuda": "000000000004",
+        "abono": 3000
+      }
+    ],
+    "commerceOrder": "commerceOrder"
+  },
+  {
+    "token": "126",
+    "flowOrder": "126",
+    "estado": "ANULADA",
+    "pagos": [
+      {
+        "idDeuda": "000000000001",
+        "abono": 500
+      }
+    ],
+    "commerceOrder": "commerceOrder"
+  },
+  {
+    "token": "127",
+    "flowOrder": "127",
+    "estado": "RECHAZADA",
+    "pagos": [
+      {
+        "idDeuda": "000000000001",
+        "abono": 1500
+      }
+    ],
+    "commerceOrder": "commerceOrder"
+  },
+  {
+    "token": "128",
+    "flowOrder": "128",
+    "estado": "ERROR_FLOW",
+    "pagos": [
+      {
+        "idDeuda": "000000000003",
+        "abono": 1000
+      }
+    ],
+    "commerceOrder": "commerceOrder"
+  },
+  {
+    "token": "129",
+    "flowOrder": "129",
+    "estado": "ERROR_VALIDACION",
+    "pagos": [
+      {
+        "idDeuda": "000000000007",
+        "abono": 1000
+      }
+    ],
+    "commerceOrder": "commerceOrder"
+  },
+  {
+    "token": "130",
+    "flowOrder": "130",
+    "estado": "EN_REGULARIZACION",
+    "pagos": [
+      {
+        "idDeuda": "000000000005",
+        "abono": 1500
+      }
+    ],
+    "commerceOrder": "commerceOrder"
+  },
+  {
+    "token": "131",
+    "flowOrder": "131",
+    "estado": "PAGADA",
+    "pagos": [
+      {
+        "idDeuda": "000000000006",
+        "abono": 1000
+      }
+    ],
+    "commerceOrder": "commerceOrder"
+  }
+]

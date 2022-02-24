@@ -49,9 +49,9 @@ afterEach(async () => {
   await mongoose.disconnect();
 });
 
-afterAll(async () => {
-  await mongoose.disconnect();
-});
+// afterAll(async () => {
+//   await mongoose.disconnect();
+// });
 
 describe("Endpoints deudas salida", () => {
   describe("POST /inter-mongo-deudas/salida", () => {

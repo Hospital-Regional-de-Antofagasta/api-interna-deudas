@@ -5,8 +5,8 @@
     "rutPaciente": "11111111-1",
     "fecha": "2017-06-06",
     "identificador": "1706001668",
-    "valor": 630,
-    "deuda": 630,
+    "valor": 6300,
+    "deuda": 4300,
     "tipo": "PAGARE",
     "codigoEstablecimiento": "HRA",
     "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán"
@@ -70,5 +70,17 @@
     "tipo": "PAGARE",
     "codigoEstablecimiento": "HC",
     "nombreEstablecimiento": "Hospital de Calama"
+  },
+  {
+    "_id": "000000000007",
+    "correlativo": 6,
+    "rutPaciente": "22222222-2",
+    "fecha": "2000-02-24",
+    "identificador": "65865",
+    "valor": 8999,
+    "deuda": 8999,
+    "tipo": "PAGARE",
+    "codigoEstablecimiento": "HRA",
+    "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán"
   }
 ]
