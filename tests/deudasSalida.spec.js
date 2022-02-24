@@ -134,7 +134,7 @@ describe("Endpoints deudas salida", () => {
 
       const deudasBD = await Deudas.find().exec();
 
-      expect(deudasBD.length).toBe(9);
+      expect(deudasBD.length).toBe(10);
 
       const { respuesta } = response.body;
 
@@ -397,7 +397,7 @@ describe("Endpoints deudas salida", () => {
 
       const deudasBD = await Deudas.find().exec();
 
-      expect(deudasBD.length).toBe(4);
+      expect(deudasBD.length).toBe(5);
 
       const { respuesta } = response.body;
 
