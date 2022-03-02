@@ -21,6 +21,8 @@ const deudaGuardar = {
   tipo: "PAGARE",
   codigoEstablecimiento: "HRA",
   nombreEstablecimiento: "Hospital Regional Antofagasta Dr. Leonardo Guzmán",
+  rutDeudor: "11111111-1",
+  nombreDeudor: "nombre deudor",
 };
 
 const deudaActualizar = {
@@ -33,6 +35,8 @@ const deudaActualizar = {
   tipo: "PAGARE",
   codigoEstablecimiento: "HRA",
   nombreEstablecimiento: "Hospital Regional Antofagasta Dr. Leonardo Guzmán",
+  rutDeudor: "11111111-1",
+  nombreDeudor: "nombre deudor",
 };
 
 beforeEach(async () => {
@@ -123,6 +127,8 @@ describe("Endpoints deudas salida", () => {
       expect(deudaDespues.nombreEstablecimiento).toBe(
         deudaGuardar.nombreEstablecimiento
       );
+      expect(deudaDespues.rutDeudor).toBe(deudaGuardar.rutDeudor);
+      expect(deudaDespues.nombreDeudor).toBe(deudaGuardar.nombreDeudor);
     });
     it("Should save multiple deudas and return errors", async () => {
       const response = await request
@@ -271,6 +277,8 @@ describe("Endpoints deudas salida", () => {
       expect(deudaDespues.nombreEstablecimiento).toBe(
         deudaActualizar.nombreEstablecimiento
       );
+      expect(deudaDespues.rutDeudor).toBe(deudaActualizar.rutDeudor);
+      expect(deudaDespues.nombreDeudor).toBe(deudaActualizar.nombreDeudor);
     });
     it("Should update multiple deudas and return errors", async () => {
       const response = await request

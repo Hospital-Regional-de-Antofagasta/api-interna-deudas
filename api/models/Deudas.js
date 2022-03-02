@@ -25,6 +25,8 @@ const Deudas = mongoose.model(
           "Hospital de Calama",
         ],
       },
+      rutDeudor: { type: String, required: true },
+      nombreDeudor: { type: String, required: true }
     },
     { timestamps: true }
   )
