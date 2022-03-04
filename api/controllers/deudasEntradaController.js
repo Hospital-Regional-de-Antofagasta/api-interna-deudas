@@ -10,6 +10,7 @@ exports.getOrdenesFlow = async (req, res) => {
     })
       .sort({ createdAt: 1 })
       .limit(100)
+      .lean()
       .exec();
 
     const ordenesAEnviar = [];
@@ -21,7 +22,9 @@ exports.getOrdenesFlow = async (req, res) => {
           aEnviar = false;
           break;
         }
+        pago.correlativoDeuda = deuda.correlativo;
       }
+
       if (aEnviar) ordenesAEnviar.push(ordenFlow);
     }
 

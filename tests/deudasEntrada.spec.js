@@ -79,10 +79,12 @@ describe("Endpoints deudas entrada", () => {
       expect(response.body[0].pagos[0].idDeuda).toBe(
         "303030303030303030303032"
       );
+      expect(response.body[0].pagos[0].correlativoDeuda).toBe(2);
       expect(response.body[0].pagos[0].abono).toBe(1000);
       expect(response.body[0].pagos[1].idDeuda).toBe(
         "303030303030303030303034"
       );
+      expect(response.body[0].pagos[1].correlativoDeuda).toBe(4);
       expect(response.body[0].pagos[1].abono).toBe(3000);
       expect(response.body[0].commerceOrder).toBe("commerceOrder");
       expect(response.body[1].token).toBe("128");
@@ -92,6 +94,7 @@ describe("Endpoints deudas entrada", () => {
       expect(response.body[1].pagos[0].idDeuda).toBe(
         "303030303030303030303033"
       );
+      expect(response.body[1].pagos[0].correlativoDeuda).toBe(3);
       expect(response.body[1].pagos[0].abono).toBe(1000);
       expect(response.body[1].commerceOrder).toBe("commerceOrder");
       expect(response.body[2].token).toBe("129");
@@ -101,6 +104,7 @@ describe("Endpoints deudas entrada", () => {
       expect(response.body[2].pagos[0].idDeuda).toBe(
         "303030303030303030303037"
       );
+      expect(response.body[2].pagos[0].correlativoDeuda).toBe(6);
       expect(response.body[2].pagos[0].abono).toBe(1000);
       expect(response.body[2].commerceOrder).toBe("commerceOrder");
     });
