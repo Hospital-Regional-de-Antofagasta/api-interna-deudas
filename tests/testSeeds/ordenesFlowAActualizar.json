@@ -14,7 +14,8 @@
         "abono": 3000
       }
     ],
-    "commerceOrder": "commerceOrder"
+    "commerceOrder": "commerceOrder",
+    "rutPaciente": "11111111-1"
   },
   {
     "_id": "000000000013",
@@ -31,7 +32,8 @@
         "abono": 3000
       }
     ],
-    "commerceOrder": "commerceOrder"
+    "commerceOrder": "commerceOrder",
+    "rutPaciente": "11111111-1"
   },
   {
     "_id": "000000000006",
@@ -44,7 +46,8 @@
         "abono": 1000
       }
     ],
-    "commerceOrder": "commerceOrder"
+    "commerceOrder": "commerceOrder",
+    "rutPaciente": "11111111-1"
   },
   {
     "_id": "000000000007",
@@ -57,6 +60,7 @@
         "abono": 1000
       }
     ],
-    "commerceOrder": "commerceOrder"
+    "commerceOrder": "commerceOrder",
+    "rutPaciente": "11111111-1"
   }
 ]

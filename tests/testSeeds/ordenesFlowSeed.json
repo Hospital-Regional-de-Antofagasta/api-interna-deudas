@@ -10,7 +10,8 @@
         "abono": 1000
       }
     ],
-    "commerceOrder": "commerceOrder"
+    "commerceOrder": "commerceOrder",
+    "rutPaciente": "11111111-1"
   },
   {
     "_id": "000000000002",
@@ -23,7 +24,8 @@
         "abono": 2000
       }
     ],
-    "commerceOrder": "commerceOrder"
+    "commerceOrder": "commerceOrder",
+    "rutPaciente": "11111111-1"
   },
   {
     "_id": "000000000003",
@@ -40,7 +42,8 @@
         "abono": 3000
       }
     ],
-    "commerceOrder": "commerceOrder"
+    "commerceOrder": "commerceOrder",
+    "rutPaciente": "11111111-1"
   },
   {
     "_id": "000000000004",
@@ -53,7 +56,8 @@
         "abono": 500
       }
     ],
-    "commerceOrder": "commerceOrder"
+    "commerceOrder": "commerceOrder",
+    "rutPaciente": "11111111-1"
   },
   {
     "_id": "000000000005",
@@ -66,7 +70,8 @@
         "abono": 1500
       }
     ],
-    "commerceOrder": "commerceOrder"
+    "commerceOrder": "commerceOrder",
+    "rutPaciente": "11111111-1"
   },
   {
     "_id": "000000000006",
@@ -79,7 +84,8 @@
         "abono": 1000
       }
     ],
-    "commerceOrder": "commerceOrder"
+    "commerceOrder": "commerceOrder",
+    "rutPaciente": "11111111-1"
   },
   {
     "_id": "000000000007",
@@ -92,7 +98,8 @@
         "abono": 1000
       }
     ],
-    "commerceOrder": "commerceOrder"
+    "commerceOrder": "commerceOrder",
+    "rutPaciente": "11111111-1"
   },
   {
     "_id": "000000000008",
@@ -105,7 +112,8 @@
         "abono": 1500
       }
     ],
-    "commerceOrder": "commerceOrder"
+    "commerceOrder": "commerceOrder",
+    "rutPaciente": "11111111-1"
   },
   {
     "_id": "000000000009",
@@ -118,6 +126,7 @@
         "abono": 1000
       }
     ],
-    "commerceOrder": "commerceOrder"
+    "commerceOrder": "commerceOrder",
+    "rutPaciente": "11111111-1"
   }
 ]

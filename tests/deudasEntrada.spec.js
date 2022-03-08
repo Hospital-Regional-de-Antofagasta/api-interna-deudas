@@ -87,6 +87,7 @@ describe("Endpoints deudas entrada", () => {
       expect(response.body[0].pagos[1].correlativoDeuda).toBe(4);
       expect(response.body[0].pagos[1].abono).toBe(3000);
       expect(response.body[0].commerceOrder).toBe("commerceOrder");
+      expect(response.body[0].rutPaciente).toBe("11111111-1");
       expect(response.body[1].token).toBe("128");
       expect(response.body[1].flowOrder).toBe("128");
       expect(response.body[1].estado).toBe("ERROR_FLOW");
@@ -97,6 +98,7 @@ describe("Endpoints deudas entrada", () => {
       expect(response.body[1].pagos[0].correlativoDeuda).toBe(3);
       expect(response.body[1].pagos[0].abono).toBe(1000);
       expect(response.body[1].commerceOrder).toBe("commerceOrder");
+      expect(response.body[1].rutPaciente).toBe("11111111-1");
       expect(response.body[2].token).toBe("129");
       expect(response.body[2].flowOrder).toBe("129");
       expect(response.body[2].estado).toBe("ERROR_VALIDACION");
@@ -107,6 +109,7 @@ describe("Endpoints deudas entrada", () => {
       expect(response.body[2].pagos[0].correlativoDeuda).toBe(6);
       expect(response.body[2].pagos[0].abono).toBe(1000);
       expect(response.body[2].commerceOrder).toBe("commerceOrder");
+      expect(response.body[2].rutPaciente).toBe("11111111-1");
     });
   });
   describe("PUT /inter-mongo-deudas/entrada/pagos", () => {
@@ -158,6 +161,7 @@ describe("Endpoints deudas entrada", () => {
       );
       expect(ordenFlowActualizada.pagos[1].abono).toBe(3000);
       expect(ordenFlowActualizada.commerceOrder).toBe("commerceOrder");
+      expect(ordenFlowActualizada.rutPaciente).toBe("11111111-1");
     });
     it("Should update multiple ordenes flow", async () => {
       const response = await request

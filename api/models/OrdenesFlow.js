@@ -35,6 +35,7 @@ const OrdenesFlow = mongoose.model(
         required: true,
       },
       commerceOrder: { type: String, required: true },
+      rutPaciente: { type: String, required: true },
     },
     { timestamps: true }
   )
