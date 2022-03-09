@@ -6,7 +6,7 @@ exports.getOrdenesFlow = async (req, res) => {
     const { codigoEstablecimiento } = req.query;
 
     const ordenesFlow = await OrdenesFlow.find({
-      estado: { $in: ["PAGADA", "ERROR_FLOW", "ERROR_VALIDACION"] },
+      estado: { $in: ["PAGADA", "ERROR_FLOW"] },
     })
       .sort({ createdAt: 1 })
       .limit(100)

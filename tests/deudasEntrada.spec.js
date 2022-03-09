@@ -101,7 +101,7 @@ describe("Endpoints deudas entrada", () => {
       expect(response.body[1].rutPaciente).toBe("11111111-1");
       expect(response.body[2].token).toBe("129");
       expect(response.body[2].flowOrder).toBe("129");
-      expect(response.body[2].estado).toBe("ERROR_VALIDACION");
+      expect(response.body[2].estado).toBe("PAGADA");
       expect(response.body[2].pagos.length).toBe(1);
       expect(response.body[2].pagos[0].idDeuda).toBe(
         "303030303030303030303037"
