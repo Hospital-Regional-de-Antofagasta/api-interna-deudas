@@ -43,12 +43,12 @@ exports.updateOrdenesFlow = async (req, res) => {
     for (let ordenFlow of ordenesFlow) {
       try {
         const ordenFlowMismoIdentificador = await OrdenesFlow.find({
-          _id: ordenFlow._id,
+          flowOrder: ordenFlow.flowOrder,
         }).exec();
         // si no existe la orden de flow, reportar el error
         if (ordenFlowMismoIdentificador.length === 0) {
           ordenesFlowActualizadas.push({
-            afectado: ordenFlow._id,
+            afectado: ordenFlow.flowOrder,
             realizado: false,
             error: "La orden de flow no existe.",
           });
@@ -57,21 +57,21 @@ exports.updateOrdenesFlow = async (req, res) => {
         // si existen multiples ordenes de flow con el mismo identificador, indicar el error
         if (ordenFlowMismoIdentificador.length > 1) {
           ordenesFlowActualizadas.push({
-            afectado: ordenFlow._id,
+            afectado: ordenFlow.flowOrder,
             realizado: false,
-            error: `Existen ${ordenFlowMismoIdentificador.length} ordenes de flow con el identificador ${solicitudes._id}.`,
+            error: `Existen ${ordenFlowMismoIdentificador.length} ordenes de flow con el identificador ${solicitudes.flowOrder}.`,
           });
           continue;
         }
         // si solo se encontro una orden de flow para actualizar
         const response = await OrdenesFlow.updateOne(
           {
-            _id: ordenFlow._id,
+            flowOrder: ordenFlow.flowOrder,
           },
           ordenFlow
         ).exec();
         ordenesFlowActualizadas.push({
-          afectado: ordenFlow._id,
+          afectado: ordenFlow.flowOrder,
           realizado: response.modifiedCount ? true : false,
           error: response.modifiedCount
             ? ""
@@ -79,7 +79,7 @@ exports.updateOrdenesFlow = async (req, res) => {
         });
       } catch (error) {
         ordenesFlowActualizadas.push({
-          afectado: ordenFlow._id,
+          afectado: ordenFlow.flowOrder,
           realizado: false,
           error: `${error.name} - ${error.message}`,
         });
