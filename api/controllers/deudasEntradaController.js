@@ -6,7 +6,7 @@ exports.getOrdenesFlow = async (req, res) => {
     const { codigoEstablecimiento } = req.query;
 
     const ordenesFlow = await OrdenesFlow.find({
-      estado: { $in: ["PAGADA", "ERROR_FLOW"] },
+      estado: { $in: ["PAGADA", "ANULADA", "RECHAZADA", "ERROR_FLOW"] },
     })
       .sort({ createdAt: 1 })
       .limit(100)
@@ -15,21 +15,17 @@ exports.getOrdenesFlow = async (req, res) => {
 
     const ordenesAEnviar = [];
     for (let ordenFlow of ordenesFlow) {
-      let aEnviar = true;
-      for (let pago of ordenFlow.pagos) {
-        const deuda = await Deudas.findOne({ _id: pago.idDeuda }).exec();
-        if (deuda.codigoEstablecimiento !== codigoEstablecimiento) {
-          aEnviar = false;
-          break;
-        }
-        pago.correlativoDeuda = deuda.correlativo;
-      }
-
-      if (aEnviar) ordenesAEnviar.push(ordenFlow);
+      if (
+        ordenFlow.pagos.filter(
+          (e) => e.codigoEstablecimientoDeuda !== codigoEstablecimiento
+        )
+      )
+        ordenesAEnviar.push(ordenFlow);
     }
 
     res.status(200).send(ordenesAEnviar);
   } catch (error) {
+    console.log(`OrdenesFlow get: ${error.name} - ${error.message}`);
     res.status(500).send({
       error: `OrdenesFlow get: ${error.name} - ${error.message}`,
     });
