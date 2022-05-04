@@ -45,7 +45,7 @@ beforeEach(async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  await Deudas.create(deudasSeed);
+  await Deudas.create(deudasSeed, { validateBeforeSave: false });
 });
 
 afterEach(async () => {

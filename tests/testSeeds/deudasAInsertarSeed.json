@@ -73,8 +73,8 @@
     "valor": 7844,
     "deuda": 7844,
     "tipo": "PAGARE",
-    "codigoEstablecimiento": "HC",
-    "nombreEstablecimiento": "Hospital de Calama",
+    "codigoEstablecimiento": "HRA",
+    "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán",
     "rutDeudor": "11111111-1",
     "nombreDeudor": "nombre deudor"
   },
