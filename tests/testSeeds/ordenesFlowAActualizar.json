@@ -1,66 +1,83 @@
 [
   {
-    "_id": "000000000003",
-    "token": "125",
-    "flowOrder": "125",
-    "estado": "VALIDADA",
+    "flowOrder": "988411",
+    "token": "KysBmS2OHnaZ0BpwZbsWmj3iuTJxrc1",
+    "commerceOrder": "cbde4c0a-2d8d-40d0-97e4-d2f21f0c9f2e1",
+    "rutPaciente": "22222222-21",
+    "emailPagador": "chorley8m@theatlantic.com1",
+    "rutPagador": "22222222-21",
+    "estado": "PAGADA1",
+    "registradoEnEstablecimiento": true,
     "pagos": [
       {
-        "idDeuda": "000000000002",
-        "abono": 1000
-      },
-      {
-        "idDeuda": "000000000004",
-        "abono": 3000
+        "identificadorDeuda": "gultN7Y1",
+        "tipoDeuda": "PAGARE1",
+        "codigoEstablecimientoDeuda": "HRA1",
+        "abono": 4613302531
       }
-    ],
-    "commerceOrder": "commerceOrder",
-    "rutPaciente": "11111111-1"
+    ]
   },
   {
-    "_id": "000000000013",
-    "token": "125",
-    "flowOrder": "125",
-    "estado": "VALIDADA",
-    "pagos": [
-      {
-        "idDeuda": "000000000002",
-        "abono": 1000
-      },
-      {
-        "idDeuda": "000000000004",
-        "abono": 3000
-      }
-    ],
-    "commerceOrder": "commerceOrder",
-    "rutPaciente": "11111111-1"
-  },
-  {
-    "_id": "000000000006",
-    "token": "128",
-    "flowOrder": "128",
-    "estado": "EN_REGULARIZACION",
-    "pagos": [
-      {
-        "idDeuda": "000000000003",
-        "abono": 1000
-      }
-    ],
-    "commerceOrder": "commerceOrder",
-    "rutPaciente": "11111111-1"
-  },
-  {
-    "_id": "000000000007",
-    "token": "129",
-    "flowOrder": "129",
+    "flowOrder": "6101461",
+    "token": "lNqtXiJdlnrsNYYvdfvpnY58CVbOH0",
+    "commerceOrder": "170e8682-a6df-478f-8b04-88808a4d4e4f",
+    "rutPaciente": "22222222-2",
+    "emailPagador": "cebbagedp@home.pl",
+    "rutPagador": "11111111-1",
     "estado": "PAGADA",
+    "registradoEnEstablecimiento": true,
     "pagos": [
       {
-        "idDeuda": "000000000007",
-        "abono": 1000
+        "identificadorDeuda": "AbtDJ4p",
+        "tipoDeuda": "PAGARE",
+        "codigoEstablecimientoDeuda": "HRA",
+        "abono": 349865712
+      },
+      {
+        "_id": "62718b22fc13ae7dd20007a8",
+        "identificadorDeuda": "jkueYim",
+        "tipoDeuda": "PAGARE",
+        "codigoEstablecimientoDeuda": "HRA",
+        "abono": 715273123
       }
-    ],
-    "commerceOrder": "commerceOrder",
-    "rutPaciente": "11111111-1"
+    ]
+  },
+  {
+    "flowOrder": "811832",
+    "token": "ouYbEyInhg6L5czBrSVuYKy5DNNwwF",
+    "commerceOrder": "93de3a6e-5e5d-43ee-9564-6b4cc48130e2",
+    "rutPaciente": "11111111-1",
+    "emailPagador": "jspray19@blogger.com",
+    "rutPagador": "11111111-1",
+    "estado": "ERROR_FLOW",
+    "registradoEnEstablecimiento": true,
+    "pagos": [
+      {
+        "identificadorDeuda": "eqEQ8jR",
+        "tipoDeuda": "PAGARE",
+        "codigoEstablecimientoDeuda": "HRA",
+        "abono": 911528998
+      }
+    ]
+  },
+  {
+    "_id": "62718b22fc13ae7dd20008181",
+    "flowOrder": "476015",
+    "token": "vpE5tiT4Knvmc0i3fnAeJnSu1jp77J",
+    "commerceOrder": "0e0277b5-f331-4dc8-8e14-15ed0e86bfea",
+    "rutPaciente": "11111111-1",
+    "emailPagador": "cborelandeg@state.gov",
+    "rutPagador": "11111111-1",
+    "estado": "PAGADA",
+    "registradoEnEstablecimiento": false,
+    "pagos": [
+      {
+        "_id": "62718b22fc13ae7dd20008191",
+        "identificadorDeuda": "G7TwtOY",
+        "tipoDeuda": "PAGARE",
+        "codigoEstablecimientoDeuda": "HRA",
+        "abono": 553597893
+      }
+    ]
   }
 ]

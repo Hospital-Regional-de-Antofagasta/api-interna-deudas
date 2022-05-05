@@ -1,5 +1,4 @@
 const OrdenesFlow = require("../models/OrdenesFlow");
-const Deudas = require("../models/Deudas");
 
 exports.getOrdenesFlow = async (req, res) => {
   try {
@@ -8,6 +7,7 @@ exports.getOrdenesFlow = async (req, res) => {
     const ordenesFlow = await OrdenesFlow.find({
       estado: { $in: ["PAGADA", "ANULADA", "RECHAZADA", "ERROR_FLOW"] },
     })
+      .select("-_id -pagos._id")
       .sort({ createdAt: 1 })
       .limit(100)
       .lean()

@@ -1,11 +1,8 @@
 const supertest = require("supertest");
 const app = require("../api/app");
 const mongoose = require("mongoose");
-// const Deudas = require("../api/models/Deudas");
-// const deudasSeed = require("../tests/testSeeds/deudasSeed.json");
 const OrdenesFlow = require("../api/models/OrdenesFlow");
 const ordenesFlowSeed = require("../tests/testSeeds/ordenesFlowSeed.json");
-// const muchasOrdenesFlowSeed = require("../tests/testSeeds/muchasOrdenesFlowSeed.json");
 const ordenesFlowAActualizar = require("../tests/testSeeds/ordenesFlowAActualizar.json");
 
 const request = supertest(app);
@@ -18,12 +15,10 @@ beforeEach(async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  // await Deudas.create(deudasSeed);
   await OrdenesFlow.create(ordenesFlowSeed, { validateBeforeSave: false });
 });
 
 afterEach(async () => {
-  // await Deudas.deleteMany();
   await OrdenesFlow.deleteMany();
   await mongoose.disconnect();
 });
@@ -63,14 +58,57 @@ describe("Endpoints deudas entrada", () => {
 
       expect(response.status).toBe(200);
 
-      expect(response.body.length).toBe(100)
+      expect(response.body.length).toBe(100);
 
-      expect(response.body.filter(e=>e.estado==="PAGADA").length).toBe(6)
-      expect(response.body.filter(e=>e.estado==="ANULADA").length).toBe(15)
-      expect(response.body.filter(e=>e.estado==="RECHAZADA").length).toBe(33)
-      expect(response.body.filter(e=>e.estado==="ERROR_FLOW").length).toBe(46)
-      expect(response.body.filter(e=>e.estado==="ERROR_FLOW_CONFIRMADO").length).toBe(0)
-      expect(response.body.filter(e=>e.estado==="ERROR_FLOW_INFORMADO").length).toBe(0)
+      const ordenesFlowPagadas = response.body.filter(
+        (e) => e.estado === "PAGADA"
+      );
+      expect(ordenesFlowPagadas.length).toBe(6);
+      expect(ordenesFlowPagadas[0]._id).toBeFalsy();
+      expect(ordenesFlowPagadas[0].flowOrder).toBe("722907");
+      expect(ordenesFlowPagadas[0].token).toBe(
+        "bYEzJP36Sp3G7b5ISEUYJ8XdpuppNG"
+      );
+      expect(ordenesFlowPagadas[0].commerceOrder).toBe(
+        "274e124f-cd93-43b7-8ecd-27fb5f7b220c"
+      );
+      expect(ordenesFlowPagadas[0].rutPaciente).toBe("22222222-2");
+      expect(ordenesFlowPagadas[0].emailPagador).toBe("zglossup5@toplist.cz");
+      expect(ordenesFlowPagadas[0].rutPagador).toBe("11111111-1");
+      expect(ordenesFlowPagadas[0].estado).toBe("PAGADA");
+      expect(ordenesFlowPagadas[0].registradoEnEstablecimiento).toBeFalsy();
+      expect(ordenesFlowPagadas[0].pagos[0]._id).toBeFalsy();
+      expect(ordenesFlowPagadas[0].pagos[0].identificadorDeuda).toBe("YI9xGVg");
+      expect(ordenesFlowPagadas[0].pagos[0].tipoDeuda).toBe("PAGARE");
+      expect(ordenesFlowPagadas[0].pagos[0].codigoEstablecimientoDeuda).toBe(
+        "HRA"
+      );
+      expect(ordenesFlowPagadas[0].pagos[0].abono).toBe(372127933);
+
+      const ordenesFlowAnuladas = response.body.filter(
+        (e) => e.estado === "ANULADA"
+      );
+      expect(ordenesFlowAnuladas.length).toBe(15);
+
+      const ordenesFlowRechazadas = response.body.filter(
+        (e) => e.estado === "RECHAZADA"
+      );
+      expect(ordenesFlowRechazadas.length).toBe(33);
+
+      const ordenesFlowErrorFlow = response.body.filter(
+        (e) => e.estado === "ERROR_FLOW"
+      );
+      expect(ordenesFlowErrorFlow.length).toBe(46);
+
+      const ordenesFlowErrorFlowConfirmado = response.body.filter(
+        (e) => e.estado === "ERROR_FLOW_CONFIRMADO"
+      );
+      expect(ordenesFlowErrorFlowConfirmado.length).toBe(0);
+
+      const ordenesFlowErrorFlowInformado = response.body.filter(
+        (e) => e.estado === "ERROR_FLOW_INFORMADO"
+      );
+      expect(ordenesFlowErrorFlowInformado.length).toBe(0);
     });
     it("Debería retornar máximo 100 ordenes Flow.", async () => {
       const response = await request
@@ -81,89 +119,100 @@ describe("Endpoints deudas entrada", () => {
       expect(response.body.length).toBe(100);
     });
   });
-  // describe("PUT /inter-mongo-deudas/entrada/pagos", () => {
-  //   it("Should not update pagos without token", async () => {
-  //     const response = await request.put("/inter-mongo-deudas/entrada/pagos");
+  describe("PUT /inter-mongo-deudas/entrada/pagos", () => {
+    it("Debería retornar error si no se recibe token.", async () => {
+      const response = await request.put("/inter-mongo-deudas/entrada/pagos");
 
-  //     expect(response.status).toBe(401);
-  //     expect(response.body.error).toBe("Acceso no autorizado.");
-  //   });
-  //   it("Should not update pagos with invalid token", async () => {
-  //     const response = await request
-  //       .put("/inter-mongo-deudas/entrada/pagos")
-  //       .set("Authorization", "no-token");
+      expect(response.status).toBe(401);
+      expect(response.body.error).toBe("Acceso no autorizado.");
+    });
+    it("Debería retornar error si el token es invalido.", async () => {
+      const response = await request
+        .put("/inter-mongo-deudas/entrada/pagos")
+        .set("Authorization", "no-token");
 
-  //     expect(response.status).toBe(401);
-  //     expect(response.body.error).toBe("Acceso no autorizado.");
-  //   });
-  //   it("Should update orden flow", async () => {
-  //     const response = await request
-  //       .put("/inter-mongo-deudas/entrada/pagos")
-  //       .set("Authorization", token)
-  //       .send([ordenesFlowAActualizar[0]]);
+      expect(response.status).toBe(401);
+      expect(response.body.error).toBe("Acceso no autorizado.");
+    });
+    it("Debería realizar la actualización para la orden Flow y retornar si la actualización fue éxitosa.", async () => {
+      const response = await request
+        .put("/inter-mongo-deudas/entrada/pagos")
+        .set("Authorization", token)
+        .send([ordenesFlowAActualizar[0]]);
 
-  //     expect(response.status).toBe(200);
+      expect(response.status).toBe(200);
 
-  //     const { respuesta } = response.body;
+      const { respuesta } = response.body;
 
-  //     expect(respuesta).toEqual([
-  //       {
-  //         afectado: "000000000003",
-  //         realizado: true,
-  //         error: "",
-  //       },
-  //     ]);
+      expect(respuesta).toEqual([
+        {
+          afectado: "988411",
+          realizado: true,
+          error: "",
+        },
+      ]);
 
-  //     const ordenFlowActualizada = await OrdenesFlow.findOne({
-  //       _id: "000000000003",
-  //     });
+      const ordenFlowActualizada = await OrdenesFlow.findOne({
+        _id: "62718b21fc13ae7dd20004d0",
+      });
 
-  //     expect(ordenFlowActualizada.token).toBe("125");
-  //     expect(ordenFlowActualizada.flowOrder).toBe("125");
-  //     expect(ordenFlowActualizada.estado).toBe("VALIDADA");
-  //     expect(ordenFlowActualizada.pagos[0].idDeuda.toString()).toBe(
-  //       "303030303030303030303032"
-  //     );
-  //     expect(ordenFlowActualizada.pagos[0].abono).toBe(1000);
-  //     expect(ordenFlowActualizada.pagos[1].idDeuda.toString()).toBe(
-  //       "303030303030303030303034"
-  //     );
-  //     expect(ordenFlowActualizada.pagos[1].abono).toBe(3000);
-  //     expect(ordenFlowActualizada.commerceOrder).toBe("commerceOrder");
-  //     expect(ordenFlowActualizada.rutPaciente).toBe("11111111-1");
-  //   });
-  //   it("Should update multiple ordenes flow", async () => {
-  //     const response = await request
-  //       .put("/inter-mongo-deudas/entrada/pagos")
-  //       .set("Authorization", token)
-  //       .send(ordenesFlowAActualizar);
+      expect(ordenFlowActualizada.flowOrder).toBe("988411");
+      expect(ordenFlowActualizada.token).toBe(
+        "KysBmS2OHnaZ0BpwZbsWmj3iuTJxrc1"
+      );
+      expect(ordenFlowActualizada.commerceOrder).toBe(
+        "cbde4c0a-2d8d-40d0-97e4-d2f21f0c9f2e1"
+      );
+      expect(ordenFlowActualizada.rutPaciente).toBe("22222222-21");
+      expect(ordenFlowActualizada.emailPagador).toBe(
+        "chorley8m@theatlantic.com1"
+      );
+      expect(ordenFlowActualizada.rutPagador).toBe("22222222-21");
+      expect(ordenFlowActualizada.estado).toBe("PAGADA1");
+      expect(ordenFlowActualizada.registradoEnEstablecimiento).toBeTruthy();
+      expect(ordenFlowActualizada.pagos.length).toBe(1);
+      expect(ordenFlowActualizada.pagos[0].identificadorDeuda.toString()).toBe(
+        "gultN7Y1"
+      );
+      expect(ordenFlowActualizada.pagos[0].tipoDeuda).toBe("PAGARE1");
+      expect(ordenFlowActualizada.pagos[0].codigoEstablecimientoDeuda).toBe(
+        "HRA1"
+      );
+      expect(ordenFlowActualizada.pagos[0].abono).toBe(4613302531);
+    });
+    it("Debería realizar actualizaciones para multiples ordenes Flow y retornar si las actualizaciones fueron éxitosas (probar con ordenes que no existan).", async () => {
+      const response = await request
+        .put("/inter-mongo-deudas/entrada/pagos")
+        .set("Authorization", token)
+        .send(ordenesFlowAActualizar);
 
-  //     expect(response.status).toBe(200);
+      expect(response.status).toBe(200);
 
-  //     const { respuesta } = response.body;
+      const { respuesta } = response.body;
 
-  //     expect(respuesta).toEqual([
-  //       {
-  //         afectado: "000000000003",
-  //         realizado: true,
-  //         error: "",
-  //       },
-  //       {
-  //         afectado: "000000000013",
-  //         realizado: false,
-  //         error: "La orden de flow no existe.",
-  //       },
-  //       {
-  //         afectado: "000000000006",
-  //         realizado: true,
-  //         error: "",
-  //       },
-  //       {
-  //         afectado: "000000000007",
-  //         realizado: true,
-  //         error: "",
-  //       },
-  //     ]);
-  //   });
-  // });
+      expect(respuesta).toEqual([
+        {
+          afectado: "988411",
+          realizado: true,
+          error: "",
+        },
+        {
+          afectado: "6101461",
+          realizado: false,
+          error: "La orden de flow no existe.",
+        },
+        {
+          afectado: "811832",
+          realizado: true,
+          error: "",
+        },
+        {
+          afectado: "476015",
+          realizado: false,
+          error:
+            'CastError - Cast to ObjectId failed for value "62718b22fc13ae7dd20008181" (type string) at path "_id"',
+        },
+      ]);
+    });
+  });
 });
