@@ -124,21 +124,21 @@ exports.deleteMany = async (req, res) => {
   const deudasEliminados = [];
   try {
     const identificadoresDeudas = req.body;
-    for (let identificadorDocumento of identificadoresDeudas) {
+    for (let identificadorDeuda of identificadoresDeudas) {
       try {
         const deudasMismoIdentificador = await Deudas.find({
           $and: [
-            { correlativo: identificadorDocumento.correlativo },
+            { correlativo: identificadorDeuda.correlativo },
             {
               codigoEstablecimiento:
-                identificadorDocumento.codigoEstablecimiento,
+                identificadorDeuda.codigoEstablecimiento,
             },
           ],
         }).exec();
         // si el deuda no existe, reportar el error e indicar que se elimino
         if (deudasMismoIdentificador.length === 0) {
           deudasEliminados.push({
-            afectado: identificadorDocumento.correlativo,
+            afectado: identificadorDeuda.correlativo,
             realizado: true,
             error: "La deuda no existe.",
           });
@@ -147,16 +147,16 @@ exports.deleteMany = async (req, res) => {
         // si existen multiples deudas con el mismo identificador, indicar el error
         if (deudasMismoIdentificador.length > 1) {
           deudasEliminados.push({
-            afectado: identificadorDocumento.correlativo,
+            afectado: identificadorDeuda.correlativo,
             realizado: false,
-            error: `Existen ${deudasMismoIdentificador.length} deudas con el correlativo ${identificadorDocumento.correlativo} para el establecimiento ${identificadorDocumento.codigoEstablecimiento}.`,
+            error: `Existen ${deudasMismoIdentificador.length} deudas con el correlativo ${identificadorDeuda.correlativo} para el establecimiento ${identificadorDeuda.codigoEstablecimiento}.`,
           });
           continue;
         }
         // si solo encontro un deuda para eliminar, lo elimina
-        const response = await Deudas.deleteOne(identificadorDocumento).exec();
+        const response = await Deudas.deleteOne(identificadorDeuda).exec();
         deudasEliminados.push({
-          afectado: identificadorDocumento.correlativo,
+          afectado: identificadorDeuda.correlativo,
           realizado: response.deletedCount ? true : false,
           error: response.deletedCount
             ? ""
@@ -164,7 +164,7 @@ exports.deleteMany = async (req, res) => {
         });
       } catch (error) {
         deudasEliminados.push({
-          afectado: identificadorDocumento.correlativo,
+          afectado: identificadorDeuda.correlativo,
           realizado: false,
           error: `${error.name} - ${error.message}`,
         });

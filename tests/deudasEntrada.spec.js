@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const OrdenesFlow = require("../api/models/OrdenesFlow");
 const ordenesFlowSeed = require("../tests/testSeeds/ordenesFlowSeed.json");
 const ordenesFlowAActualizar = require("../tests/testSeeds/ordenesFlowAActualizar.json");
+const ordenesFlowAEliminar = require("../tests/testSeeds/ordenesFlowAEliminar.json");
 
 const request = supertest(app);
 
@@ -211,6 +212,81 @@ describe("Endpoints deudas entrada", () => {
           realizado: false,
           error:
             'CastError - Cast to ObjectId failed for value "62718b22fc13ae7dd20008181" (type string) at path "_id"',
+        },
+      ]);
+    });
+  });
+  describe("DELETE /inter-mongo-deudas/entrada/pagos", () => {
+    it("Debería retornar error si no se recibe token.", async () => {
+      const response = await request.delete(
+        "/inter-mongo-deudas/entrada/pagos"
+      );
+
+      expect(response.status).toBe(401);
+      expect(response.body.error).toBe("Acceso no autorizado.");
+    });
+    it("Debería retornar error si el token es invalido.", async () => {
+      const response = await request
+        .delete("/inter-mongo-deudas/entrada/pagos")
+        .set("Authorization", "no-token");
+
+      expect(response.status).toBe(401);
+      expect(response.body.error).toBe("Acceso no autorizado.");
+    });
+    it("Debería realizar la eliminación para la orden Flow y retornar si la eliminación fue éxitosa.", async () => {
+      const response = await request
+        .delete("/inter-mongo-deudas/entrada/pagos")
+        .set("Authorization", token)
+        .send([ordenesFlowAEliminar[0]]);
+
+      expect(response.status).toBe(200);
+
+      const { respuesta } = response.body;
+
+      expect(respuesta).toEqual([
+        {
+          afectado: "988411",
+          realizado: true,
+          error: "",
+        },
+      ]);
+
+      const ordenFlowEliminada = await OrdenesFlow.findOne({
+        _id: "62718b21fc13ae7dd20004d0",
+      });
+
+      expect(ordenFlowEliminada).toBeFalsy();
+    });
+    it("Debería realizar eliminaciones para multiples ordenes Flow y retornar si las eliminaciones fueron éxitosas (probar con ordenes que no existan).", async () => {
+      const response = await request
+        .delete("/inter-mongo-deudas/entrada/pagos")
+        .set("Authorization", token)
+        .send(ordenesFlowAEliminar);
+
+      expect(response.status).toBe(200);
+
+      const { respuesta } = response.body;
+
+      expect(respuesta).toEqual([
+        {
+          afectado: "988411",
+          realizado: true,
+          error: "",
+        },
+        {
+          afectado: "6101461",
+          realizado: false,
+          error: "La orden de flow no existe.",
+        },
+        {
+          afectado: "811832",
+          realizado: true,
+          error: "",
+        },
+        {
+          afectado: "476015",
+          realizado: true,
+          error: "",
         },
       ]);
     });

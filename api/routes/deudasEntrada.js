@@ -9,4 +9,6 @@ router.get("/pagos", isAuthenticated, requiredParameters, deudasEntradaControlle
 
 router.put("/pagos", isAuthenticated, deudasEntradaController.updateOrdenesFlow);
 
+router.delete("/pagos", isAuthenticated, deudasEntradaController.deleteOrdenesFlow);
+
 module.exports = router;
