@@ -59,9 +59,9 @@ describe("Endpoints deudas entrada", () => {
 
       expect(response.status).toBe(200);
 
-      expect(response.body.length).toBe(100);
+      expect(response.body.respuesta.length).toBe(100);
 
-      const ordenesFlowPagadas = response.body.filter(
+      const ordenesFlowPagadas = response.body.respuesta.filter(
         (e) => e.estado === "PAGADA"
       );
       expect(ordenesFlowPagadas.length).toBe(6);
@@ -86,27 +86,27 @@ describe("Endpoints deudas entrada", () => {
       );
       expect(ordenesFlowPagadas[0].pagos[0].abono).toBe(372127933);
 
-      const ordenesFlowAnuladas = response.body.filter(
+      const ordenesFlowAnuladas = response.body.respuesta.filter(
         (e) => e.estado === "ANULADA"
       );
       expect(ordenesFlowAnuladas.length).toBe(15);
 
-      const ordenesFlowRechazadas = response.body.filter(
+      const ordenesFlowRechazadas = response.body.respuesta.filter(
         (e) => e.estado === "RECHAZADA"
       );
       expect(ordenesFlowRechazadas.length).toBe(33);
 
-      const ordenesFlowErrorFlow = response.body.filter(
+      const ordenesFlowErrorFlow = response.body.respuesta.filter(
         (e) => e.estado === "ERROR_FLOW"
       );
       expect(ordenesFlowErrorFlow.length).toBe(46);
 
-      const ordenesFlowErrorFlowConfirmado = response.body.filter(
+      const ordenesFlowErrorFlowConfirmado = response.body.respuesta.filter(
         (e) => e.estado === "ERROR_FLOW_CONFIRMADO"
       );
       expect(ordenesFlowErrorFlowConfirmado.length).toBe(0);
 
-      const ordenesFlowErrorFlowInformado = response.body.filter(
+      const ordenesFlowErrorFlowInformado = response.body.respuesta.filter(
         (e) => e.estado === "ERROR_FLOW_INFORMADO"
       );
       expect(ordenesFlowErrorFlowInformado.length).toBe(0);
@@ -117,7 +117,7 @@ describe("Endpoints deudas entrada", () => {
         .set("Authorization", token);
 
       expect(response.status).toBe(200);
-      expect(response.body.length).toBe(100);
+      expect(response.body.respuesta.length).toBe(100);
     });
   });
   describe("PUT /inter-mongo-deudas/entrada/pagos", () => {
