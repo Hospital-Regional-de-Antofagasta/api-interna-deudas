@@ -23,7 +23,7 @@ exports.getOrdenesFlow = async (req, res) => {
         ordenesAEnviar.push(ordenFlow);
     }
 
-    res.status(200).send(ordenesAEnviar);
+    res.status(200).send({ respuesta: ordenesAEnviar });
   } catch (error) {
     console.log(`OrdenesFlow get: ${error.name} - ${error.message}`);
     res.status(500).send({
