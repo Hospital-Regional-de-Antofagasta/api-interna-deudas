@@ -52,7 +52,7 @@ describe("Endpoints deudas entrada", () => {
         "Se debe enviar el codigo del establecimiento."
       );
     });
-    it('Debería retornar solo ordenes Flow en estado "PAGADA", "ANULADA", "RECHAZADA" o "ERROR_FLOW".', async () => {
+    it('Debería retornar solo ordenes Flow en estado "PAGADA", "ANULADA", "RECHAZADA" o "ERROR_FLOW" y "ordenesFlowRegistradoEnEstablecimiento=false".', async () => {
       const response = await request
         .get("/inter-mongo-deudas/entrada/pagos?codigoEstablecimiento=HRA")
         .set("Authorization", token);
@@ -64,7 +64,8 @@ describe("Endpoints deudas entrada", () => {
       const ordenesFlowPagadas = response.body.respuesta.filter(
         (e) => e.estado === "PAGADA"
       );
-      expect(ordenesFlowPagadas.length).toBe(6);
+      expect(ordenesFlowPagadas.length).toBe(7);
+
       expect(ordenesFlowPagadas[0]._id).toBeFalsy();
       expect(ordenesFlowPagadas[0].flowOrder).toBe("722907");
       expect(ordenesFlowPagadas[0].token).toBe(
@@ -89,17 +90,17 @@ describe("Endpoints deudas entrada", () => {
       const ordenesFlowAnuladas = response.body.respuesta.filter(
         (e) => e.estado === "ANULADA"
       );
-      expect(ordenesFlowAnuladas.length).toBe(15);
+      expect(ordenesFlowAnuladas.length).toBe(13);
 
       const ordenesFlowRechazadas = response.body.respuesta.filter(
         (e) => e.estado === "RECHAZADA"
       );
-      expect(ordenesFlowRechazadas.length).toBe(33);
+      expect(ordenesFlowRechazadas.length).toBe(37);
 
       const ordenesFlowErrorFlow = response.body.respuesta.filter(
         (e) => e.estado === "ERROR_FLOW"
       );
-      expect(ordenesFlowErrorFlow.length).toBe(46);
+      expect(ordenesFlowErrorFlow.length).toBe(43);
 
       const ordenesFlowErrorFlowConfirmado = response.body.respuesta.filter(
         (e) => e.estado === "ERROR_FLOW_CONFIRMADO"
@@ -110,6 +111,11 @@ describe("Endpoints deudas entrada", () => {
         (e) => e.estado === "ERROR_FLOW_INFORMADO"
       );
       expect(ordenesFlowErrorFlowInformado.length).toBe(0);
+
+      const ordenesFlowRegistradoEnEstablecimiento = response.body.respuesta.filter(
+        (e) => e.registradoEnEstablecimiento === true
+      );
+      expect(ordenesFlowRegistradoEnEstablecimiento.length).toBe(0);
     });
     it("Debería retornar máximo 100 ordenes Flow.", async () => {
       const response = await request
