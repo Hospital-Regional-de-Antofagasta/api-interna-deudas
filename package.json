@@ -10,7 +10,7 @@
     "start": "node ./server.js",
     "dev": "nodemon --exec node ./server.js",
     "clean": "rimraf ./build",
-    "test": "cross-env MONGO_URI=mongodb://localhost:27017 jest",
+    "test": "cross-env MONGO_URI=mongodb://localhost:27017 jest --runInBand",
     "test --watch": "cross-env MONGO_URI=mongodb://localhost:27017 jest --watch"
   },
   "repository": {
