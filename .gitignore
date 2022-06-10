@@ -60,3 +60,5 @@ Thumbs.db
 build
 /.tests.*
 /key.json
+
+dev.Dockerfile
