@@ -26,7 +26,6 @@ exports.getOrdenesFlow = async (req, res) => {
 
     res.status(200).send({ respuesta: ordenesAEnviar });
   } catch (error) {
-    console.log(`OrdenesFlow get: ${error.name} - ${error.message}`);
     res.status(500).send({
       error: `OrdenesFlow get: ${error.name} - ${error.message}`,
     });
