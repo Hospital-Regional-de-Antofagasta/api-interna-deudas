@@ -7,7 +7,7 @@ exports.getOrdenesFlow = async (req, res) => {
     const ordenesFlow = await OrdenesFlow.find({
       estado: { $in: ["PAGADA", "ANULADA", "RECHAZADA", "ERROR_FLOW"] },
       registradoEnEstablecimiento: false,
-      createdAt: { $lte: now.setSeconds(now.getSeconds() + 30) },
+      updatedAt: { $lte: now.setSeconds(now.getSeconds() + 60) },
     })
       .select("-_id -pagos._id")
       .sort({ createdAt: 1 })
