@@ -4,6 +4,7 @@ exports.getOrdenesFlow = async (req, res) => {
   try {
     const { codigoEstablecimiento } = req.query;
     const now = new Date();
+    console.log(now.setSeconds(now.getSeconds() + 60))
     const ordenesFlow = await OrdenesFlow.find({
       estado: { $in: ["PAGADA", "ANULADA", "RECHAZADA", "ERROR_FLOW"] },
       registradoEnEstablecimiento: false,
