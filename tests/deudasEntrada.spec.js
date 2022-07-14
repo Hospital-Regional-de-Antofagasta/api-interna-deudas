@@ -53,6 +53,11 @@ describe("Endpoints deudas entrada", () => {
       );
     });
     it('Debería retornar solo ordenes Flow en estado "PAGADA", "ANULADA", "RECHAZADA" o "ERROR_FLOW" y "ordenesFlowRegistradoEnEstablecimiento=false".', async () => {
+      await OrdenesFlow.updateOne(
+        { flowOrder: "051146" },
+        { updatedAt: "2022-07-15T16:40:58.423+00:00" }
+      );
+
       const response = await request
         .get("/inter-mongo-deudas/entrada/pagos?codigoEstablecimiento=HRA")
         .set("Authorization", token);
@@ -112,9 +117,10 @@ describe("Endpoints deudas entrada", () => {
       );
       expect(ordenesFlowErrorFlowInformado.length).toBe(0);
 
-      const ordenesFlowRegistradoEnEstablecimiento = response.body.respuesta.filter(
-        (e) => e.registradoEnEstablecimiento === true
-      );
+      const ordenesFlowRegistradoEnEstablecimiento =
+        response.body.respuesta.filter(
+          (e) => e.registradoEnEstablecimiento === true
+        );
       expect(ordenesFlowRegistradoEnEstablecimiento.length).toBe(0);
     });
     it("Debería retornar máximo 100 ordenes Flow.", async () => {
