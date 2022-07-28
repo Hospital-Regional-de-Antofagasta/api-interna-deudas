@@ -3,10 +3,15 @@ const OrdenesFlow = require("../models/OrdenesFlow");
 exports.getOrdenesFlow = async (req, res) => {
   try {
     const { codigoEstablecimiento } = req.query;
-
+    const now = new Date();
     const ordenesFlow = await OrdenesFlow.find({
       estado: { $in: ["PAGADA", "ANULADA", "RECHAZADA", "ERROR_FLOW"] },
       registradoEnEstablecimiento: false,
+      updatedAt: {
+        $lte: new Date(now.setMinutes(now.getMinutes() - 1)).toString(
+          "yyyy-MM-dd"
+        ),
+      },
     })
       .select("-_id -pagos._id")
       .sort({ createdAt: 1 })
