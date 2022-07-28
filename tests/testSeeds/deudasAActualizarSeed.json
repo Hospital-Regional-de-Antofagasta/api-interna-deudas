@@ -1,0 +1,55 @@
+[
+  {
+    "correlativo": 10,
+    "rutPaciente": "11111111-1",
+    "fecha": "2017-06-06",
+    "identificador": "1706001668",
+    "valor": 630,
+    "deuda": 630,
+    "tipo": "PAGARE",
+    "codigoEstablecimiento": "HRA",
+    "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán",
+    "rutDeudor": "11111111-1",
+    "nombreDeudor": "nombre deudor"
+  },
+  {
+    "correlativo": 2,
+    "rutPaciente": "11111111-1",
+    "fecha": "2010-03-29",
+    "identificador": "412276",
+    "valor": 7844,
+    "deuda": 7844,
+    "tipo": "PAGARE",
+    "codigoEstablecimiento": "HRA",
+    "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán",
+    "rutDeudor": "11111111-1",
+    "nombreDeudor": "nombre deudor"
+  },
+  {
+    "_id": "000000000001",
+    "correlativo": 3,
+    "rutPaciente": "22222222-2",
+    "fecha": "2003-05-22",
+    "identificador": "305007242",
+    "valor": 2531,
+    "deuda": 2531,
+    "tipo": "PAGARE",
+    "codigoEstablecimiento": "HRA",
+    "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán",
+    "rutDeudor": "11111111-1",
+    "nombreDeudor": "nombre deudor"
+  },
+  {
+    "correlativo": 3,
+    "rutPaciente": "11111111-1",
+    "fecha": "2015-11-29",
+    "identificador": "1511290090",
+    "valor": 3224,
+    "deuda": 3224,
+    "tipo": "PAGARE",
+    "codigoEstablecimiento": "HRA",
+    "nombreEstablecimiento": "Hospital Regional Antofagasta Dr. Leonardo Guzmán",
+    "rutDeudor": "11111111-1",
+    "nombreDeudor": "nombre deudor"
+  }
+]
